@@ -4,6 +4,7 @@ const app = express()
 const port = 5000
 const bodyParser = require('body-parser');
 const { User } = require("./models/User");
+const config = require("./config/key");
 
 //application/x-www-form-urlencoded 를 분석해서 가져올 수 있게 함
 app.use(bodyParser.urlencoded({extended: true}));
@@ -11,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://suhyeon:abcd1234@cluster0.kniot.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+mongoose.connect(config.mongoURI,{
 }).then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err))
 
